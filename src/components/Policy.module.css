@@ -1,0 +1,7 @@
+.policy {
+  width: 40%;
+}
+
+.policy > a {
+  font-size: 0.6rem;
+}

@@ -1,13 +1,72 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  transition: all 0.3s;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  @apply bg-white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  background: #e6e6e6;
 }
+
+.container {
+  width: 73%;
+  margin: 0 auto;
+}
+
+.btn {
+  @apply bg-white;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 0.6rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.btn:hover {
+  @apply border border-primarygreen;
+}
+
+.btn > * {
+  display: inline-block;
+}
+
+.btn > span {
+  margin-left: 3px;
+}
+
+.btn > img {
+  width: 12px;
+}
+
+.form-group {
+  @apply mb-3;
+}
+
+.form-control {
+  @apply text-primaryblack;
+  width: 100%;
+  padding: 10px 20px;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  font-size: 0.6rem;
+}
+.form-control::placeholder {
+  @apply text-primaryblack;
+}
+.form-control:hover,
+.form-control:focus,
+.form-control:active {
+  outline: none;
+  @apply border border-primarygreen;
+}
+
+
