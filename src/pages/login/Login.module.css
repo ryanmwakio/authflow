@@ -4,13 +4,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   height: 100vh;
 }
 
 .formSection {
   width: 100%;
   background: #e6f3eb;
+  box-shadow: -4px 3px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 10;
 }
 
 .imageSection {
@@ -61,7 +64,7 @@
 .badgeLink {
   display: inline;
   margin-left: 5px;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   font-weight: 500;
 }
 .badgeLink:hover {
@@ -70,11 +73,11 @@
 
 .extraInfo {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 8%;
   width: 70%;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 300;
   /* From https://css.glass */
   background: rgba(0, 0, 0, 0.2);
@@ -98,7 +101,7 @@
 
 .extraInfoText {
   font-family: 'Roboto';
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   margin-top: 0.5rem;
   text-align: left;
 }
@@ -134,7 +137,7 @@
 .badge2Link {
   display: inline;
   margin-left: 5px;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   font-weight: 500;
 }
 .badge2Link:hover {
@@ -147,9 +150,9 @@
 
 .signinText {
   position: absolute;
-  right: 5%;
+  right: 10%;
   margin-top: 5%;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 }
 
 .signinText a {
@@ -170,7 +173,7 @@
 }
 
 .signupFormText {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   display: block;
   text-align: Left;
 }
@@ -184,7 +187,7 @@
 .passWrapper > i {
   position: absolute;
   top: 35%;
-  right: 16%;
+  right: 10%;
   color: #747474;
 }
 .passWrapper > i:hover {

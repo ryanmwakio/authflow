@@ -84,10 +84,10 @@ function Login() {
                   </div>
                   <p className={classes.signupFormText}>or continue with</p>
                   <form onSubmit={onSubmit}>
-                    <div className="form-group">
+                    <div className="form-group mt-3">
                       <input
                         type="email"
-                        className="form-control "
+                        className="form-control"
                         placeholder="Enter Email"
                         required
                       />
@@ -102,6 +102,33 @@ function Login() {
                       <i onClick={togglePasswordVisiblity}>
                         {passwordShown ? eyeOff : eye}
                       </i>
+                    </div>
+
+                    <div className="grid grid-cols-2">
+                      <div class="flex items-center justify-start w-full mb-7">
+                        <label
+                          for="toggleB"
+                          class="flex items-center cursor-pointer"
+                        >
+                          <div class="relative">
+                            <input
+                              type="checkbox"
+                              id="toggleB"
+                              class="sr-only"
+                            />
+                            <div class="block bg-gray-300 w-6 h-4 rounded-full"></div>
+                            <div class="dot absolute left-1 top-1 bg-white w-2 h-2 rounded-full transition"></div>
+                          </div>
+                          <div class="ml-2 text-gray-700 toggle-text">
+                            Remember me
+                          </div>
+                        </label>
+                      </div>
+                      <div className="flex align-middle justify-end">
+                        <Link to="/forgot-password" className="forgot-password">
+                          Forgot Password
+                        </Link>
+                      </div>
                     </div>
 
                     <div className="form-group">

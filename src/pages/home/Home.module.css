@@ -1,0 +1,76 @@
+.home {
+  width: 100%;
+  height: 90vh;
+  position: relative;
+  background: rgb(8, 4, 68);
+  margin-top: 3%;
+  background: url('../../assets/crypto.jpg') no-repeat center center fixed;
+}
+
+.frontBlur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* From https://css.glass */
+  background: rgba(22, 3, 85, 0.55);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.logo {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+}
+
+.landingText {
+  position: absolute;
+  top: 25%;
+  width: 60%;
+  text-align: center;
+  left: 17%;
+  @apply text-white;
+}
+
+.landingText h2 {
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  font-weight: 800;
+  text-shadow: -3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.graphic1 {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+  width: 100px;
+}
+
+.desc {
+  position: absolute;
+  top: 50%;
+  width: 60%;
+  text-align: center;
+  left: 17%;
+  @apply text-white;
+  font-size: 0.8rem;
+}
+
+.btnWhite {
+  @apply text-primaryblack;
+  text-transform: capitalize;
+}
+.btnWhite:hover,
+.btnWhite:focus,
+.btnWhite:active {
+  background: rgb(238, 237, 237);
+}
+
+.btnGreen {
+  @apply bg-primarygreen;
+}
