@@ -5,6 +5,7 @@ import Home from './pages/home/Home'
 import Login from './pages/login/Login'
 import Signup from './pages/signup/Signup'
 import Error from './pages/Error/Error'
+import Navigation from './components/Navigation'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
       <main>
+        <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

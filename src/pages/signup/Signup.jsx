@@ -117,7 +117,7 @@ function Signup() {
               </div>
             </div>
           </div>
-          <div className="col-span-3">
+          <div className="md:col-span-3 col-span-5">
             <div className={classes.form}>
               <p className={classes.signinText}>
                 have an account? <Link to="/login">login</Link>

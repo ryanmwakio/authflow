@@ -61,7 +61,7 @@ function Login() {
     <section className={classes.signup}>
       <div className={`container`}>
         <div className={`grid grid-cols-5 ${classes.formSection}`}>
-          <div className="col-span-3">
+          <div className="md:col-span-3 col-span-5">
             <div className={classes.form}>
               <p className={classes.signinText}>
                 don't have an account? <Link to="/signup">sign up</Link>

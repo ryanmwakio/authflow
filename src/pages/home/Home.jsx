@@ -14,7 +14,9 @@ function Home() {
               <img src={logo} alt="" />
             </div>
             <div className={classes.landingText}>
-              <h2>Buy and Sell Crypto at the best prices instantly</h2>
+              <h2>
+                Buy and Sell Crypto at the <span>best prices</span> instantly
+              </h2>
             </div>
             <div className={classes.desc}>
               <p>

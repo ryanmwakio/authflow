@@ -1,0 +1,49 @@
+.navigation {
+  position: fixed;
+  top: 0.5%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+  margin: 0 auto;
+}
+
+.navItem {
+  @apply bg-primarygreen py-3;
+  /* From https://css.glass */
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  width: 29.2%;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .navItem {
+    width: 90%;
+  }
+}
+
+.navItem > a {
+  @apply text-white;
+  font-size: 0.7rem;
+  text-transform: italic;
+}
+
+.navItem > a:hover,
+.navItem:focus > a:active {
+  @apply text-white hover:text-primarygreen;
+  font-size: 0.7rem;
+}
+
+.navItem img {
+  width: 25px;
+}
+
+.navItem .active {
+  @apply text-white hover:text-primarygreen;
+  font-size: 0.7rem;
+}

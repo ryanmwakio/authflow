@@ -69,6 +69,7 @@ body {
 .form-control:active {
   outline: none;
   @apply border border-primarygreen;
+  box-shadow: -1px 3px 7px rgba(0, 0, 0, 0.2);
 }
 
 /* Toggle B */
@@ -84,4 +85,11 @@ input:checked ~ .dot {
 .forgot-password {
   @apply text-primaryred;
   font-size: 0.7rem;
+}
+
+@media (max-width: 823px) {
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
 }
