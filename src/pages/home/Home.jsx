@@ -2,8 +2,25 @@ import React from 'react'
 import classes from './Home.module.css'
 import logo from '../../assets/bm-11.webp'
 import { Link } from 'react-router-dom'
+//import { motion } from 'framer-motion'
 
 function Home() {
+  // const containerVariants = {
+  //   hidden: {
+  //     y: '-100vh',
+  //   },
+  //   visible: {
+  //     y: 0,
+  //     transition: {
+  //       duration: 0.3,
+  //       ease: 'easeInOut',
+  //     },
+  //   },
+  //   exit: {
+  //     y: '100vh',
+  //   },
+  // }
+
   return (
     <>
       <div className="container">

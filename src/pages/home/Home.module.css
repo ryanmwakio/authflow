@@ -1,11 +1,13 @@
 .home {
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   position: relative;
   background: rgb(8, 4, 68);
   margin-top: 3%;
   background: url('../../assets/crypto.jpg') no-repeat center center fixed;
   object-fit: cover;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 .frontBlur {

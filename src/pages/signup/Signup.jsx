@@ -7,6 +7,7 @@ import microscope from '../../assets/microscope.svg'
 import { Link } from 'react-router-dom'
 import googleIcon from '../../assets/google.svg'
 import facebookIcon from '../../assets/facebook.svg'
+//import { motion } from 'framer-motion'
 
 function Signup() {
   const [passwordShown, setPasswordShown] = useState(false)
@@ -62,6 +63,22 @@ function Signup() {
       />
     </svg>
   )
+
+  // const containerVariants = {
+  //   hidden: {
+  //     y: '-100vh',
+  //   },
+  //   visible: {
+  //     delay: 0.3,
+  //     y: 0,
+  //     transition: {
+  //       duration: 0.3,
+  //     },
+  //   },
+  //   exit: {
+  //     y: '100vh',
+  //   },
+  // }
   return (
     <section className={classes.signup}>
       <div className={`container`}>

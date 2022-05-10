@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import googleIcon from '../../assets/google.svg'
 import facebookIcon from '../../assets/facebook.svg'
 import icon from '../../assets/icon.svg'
+//import { motion } from 'framer-motion'
 
 function Login() {
   const [passwordShown, setPasswordShown] = useState(false)
@@ -57,6 +58,22 @@ function Login() {
     </svg>
   )
 
+  // const containerVariants = {
+  //   hidden: {
+  //     y: '-100vh',
+  //   },
+  //   visible: {
+  //     y: 0,
+  //     transition: {
+  //       duration: 0.3,
+  //       ease: 'easeInOut',
+  //     },
+  //   },
+  //   exit: {
+  //     y: '100vh',
+  //   },
+  // }
+
   return (
     <section className={classes.signup}>
       <div className={`container`}>
@@ -105,21 +122,21 @@ function Login() {
                     </div>
 
                     <div className="grid grid-cols-2">
-                      <div class="flex items-center justify-start w-full mb-7">
+                      <div className="flex items-center justify-start w-full mb-7">
                         <label
                           for="toggleB"
-                          class="flex items-center cursor-pointer"
+                          className="flex items-center cursor-pointer"
                         >
-                          <div class="relative">
+                          <div className="relative">
                             <input
                               type="checkbox"
                               id="toggleB"
-                              class="sr-only"
+                              className="sr-only"
                             />
-                            <div class="block bg-gray-300 w-6 h-4 rounded-full"></div>
-                            <div class="dot absolute left-1 top-1 bg-white w-2 h-2 rounded-full transition"></div>
+                            <div className="block bg-gray-300 w-6 h-4 rounded-full"></div>
+                            <div className="dot absolute left-1 top-1 bg-white w-2 h-2 rounded-full transition"></div>
                           </div>
-                          <div class="ml-2 text-gray-700 toggle-text">
+                          <div className="ml-2 text-gray-700 toggle-text">
                             Remember me
                           </div>
                         </label>

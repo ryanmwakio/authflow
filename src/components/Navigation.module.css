@@ -44,6 +44,11 @@
 }
 
 .navItem .active {
-  @apply text-white hover:text-primarygreen;
+  @apply text-primarygreen hover:text-primarygreen;
+  font-size: 0.7rem;
+}
+
+.active {
+  @apply text-primarygreen hover:text-primarygreen;
   font-size: 0.7rem;
 }

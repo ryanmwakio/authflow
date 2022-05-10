@@ -93,3 +93,8 @@ input:checked ~ .dot {
     margin: 0 auto;
   }
 }
+
+.active {
+  @apply text-white hover:text-primarygreen;
+  font-size: 0.7rem;
+}
