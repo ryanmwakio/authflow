@@ -6,7 +6,8 @@ import Login from './pages/login/Login'
 import Signup from './pages/signup/Signup'
 import Error from './pages/Error/Error'
 import Navigation from './components/Navigation'
-import { AnimatePresence } from 'framer-motion'
+import RequireAuth from './utils/RequireAuth'
+import Profile from './pages/Profile/Profile'
 
 function App() {
   const location = useLocation()
@@ -16,18 +17,21 @@ function App() {
         <meta charSet="utf-8" />
         <link rel="shortcut icon" href={favicon} type="image/x-icon" />
         <title>Bitmama - Buy And Sell Cryptocurrencies Easily With Trust</title>
-        <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
       <main>
         <Navigation />
-        <AnimatePresence>
-          <Routes location={location} key={location.key}>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </AnimatePresence>
+        <Routes location={location} key={location.key}>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="*" element={<Error />} />
+          {/* protected routes */}
+          {/* <Route element={<RequireAuth />}>
+            <Route path="/profile" element={<Profile />} />
+          </Route> */}
+
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
       </main>
     </>
   )

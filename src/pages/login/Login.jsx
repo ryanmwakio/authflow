@@ -1,19 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
+import useAuth from '../../hooks/useAuth'
 import classes from './Login.module.css'
 import logo from '../../assets/bm-11.webp'
-import { Link } from 'react-router-dom'
-import googleIcon from '../../assets/google.svg'
-import facebookIcon from '../../assets/facebook.svg'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import icon from '../../assets/icon.svg'
-//import { motion } from 'framer-motion'
+import axios from '../../api/axios'
+import useInput from '../../hooks/useInput'
+import useToggle from '../../hooks/useToggle'
+import AuthContext from '../../context/AuthProvider'
 
+const LOGIN_URL = '/auth'
 function Login() {
+  const [users, setUsers] = useState([])
+  const { setAuth, auth } = useContext(AuthContext)
   const [passwordShown, setPasswordShown] = useState(false)
 
-  const onSubmit = (event) => {
-    event.preventDefault()
-    console.log(event)
-  }
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from.pathname || '/profile'
+
+  const userRef = useRef()
+  const errRef = useRef()
+
+  const [user, resetUser, userAttribs] = useInput('user', '')
+  const [pwd, setPwd] = useState('')
+  const [errMsg, setErrMsg] = useState('')
+  const [check, toggleCheck] = useToggle('persist', false)
+  const [success, setSuccess] = useState(false)
+
+  useEffect(() => {
+    userRef.current.focus()
+  }, [])
+
+  useEffect(() => {
+    setErrMsg('')
+  }, [user, pwd])
 
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true)
@@ -58,21 +79,63 @@ function Login() {
     </svg>
   )
 
-  // const containerVariants = {
-  //   hidden: {
-  //     y: '-100vh',
-  //   },
-  //   visible: {
-  //     y: 0,
-  //     transition: {
-  //       duration: 0.3,
-  //       ease: 'easeInOut',
-  //     },
-  //   },
-  //   exit: {
-  //     y: '100vh',
-  //   },
-  // }
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ user, pwd }),
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        },
+      )
+      const accessToken = response.data.accessToken
+      const roles = response.data.roles
+      setAuth({ user, pwd, roles, accessToken })
+      //create a users array in local storage with an empty array if it doesn't exist
+      if (!localStorage.getItem('users')) {
+        localStorage.setItem('users', JSON.stringify([]))
+      }
+      //get the users array from local storage and add the user to it without duplicates and without overwriting the array and the current user should be the first one in the array
+      //create an active users array in local storage with an empty array if it doesn't exist and add the user to it
+      if (!localStorage.getItem('activeUsers')) {
+        localStorage.setItem('activeUsers', JSON.stringify([]))
+      }
+      const users = JSON.parse(localStorage.getItem('users'))
+      const activeUsers = JSON.parse(localStorage.getItem('activeUsers'))
+      const userIndex = users.findIndex(
+        (user) => user.user === userRef.current.value,
+      )
+      if (userIndex === -1) {
+        users.push({ user: userRef.current.value, pwd: pwd })
+        localStorage.setItem('users', JSON.stringify(users))
+      }
+      const activeUserIndex = activeUsers.findIndex(
+        (user) => user.user === userRef.current.value,
+      )
+      if (activeUserIndex === -1) {
+        activeUsers.push({ user: userRef.current.value, pwd: pwd })
+        localStorage.setItem('activeUsers', JSON.stringify(activeUsers))
+      }
+
+      resetUser()
+      setPwd('')
+      navigate(from, { replace: true })
+    } catch (err) {
+      if (!err.response) {
+        setErrMsg('No Server Response')
+      } else if (err.response?.status === 400) {
+        setErrMsg('Missing Username or Password')
+      } else if (err.response?.status === 401) {
+        setErrMsg('Unauthorized')
+      } else {
+        setErrMsg('Login Failed')
+      }
+      errRef.current.focus()
+    }
+  }
 
   return (
     <section className={classes.signup}>
@@ -89,63 +152,46 @@ function Login() {
                   <p className={classes.signupFormText}>
                     Login into your account
                   </p>
-                  <div className="my-5">
-                    <div className="btn btn-white mr-3">
-                      <img src={googleIcon} alt="google icon" />
-                      <span>Google</span>
-                    </div>
-                    <div className="btn btn-white">
-                      <img src={facebookIcon} alt="facebook icon" />
-                      <span>Facebook</span>
-                    </div>
-                  </div>
-                  <p className={classes.signupFormText}>or continue with</p>
-                  <form onSubmit={onSubmit}>
+
+                  <p
+                    ref={errRef}
+                    className={errMsg ? 'errmsg' : 'offscreen'}
+                    aria-live="assertive"
+                  >
+                    {errMsg}
+                  </p>
+
+                  <form onSubmit={handleSubmit}>
                     <div className="form-group mt-3">
+                      <label htmlFor="username">Username:</label>
                       <input
-                        type="email"
+                        type="text"
+                        name="username"
                         className="form-control"
-                        placeholder="Enter Email"
+                        placeholder="Enter Username"
                         required
+                        id="username"
+                        ref={userRef}
+                        autoComplete="off"
+                        {...userAttribs}
                       />
                     </div>
+
                     <div className={`${classes.passWrapper} form-group`}>
+                      <label htmlFor="password">Password:</label>
                       <input
                         placeholder="Password"
                         name="password"
                         type={passwordShown ? 'text' : 'password'}
                         className="form-control"
+                        id="password"
+                        onChange={(e) => setPwd(e.target.value)}
+                        value={pwd}
+                        required
                       />
                       <i onClick={togglePasswordVisiblity}>
                         {passwordShown ? eyeOff : eye}
                       </i>
-                    </div>
-
-                    <div className="grid grid-cols-2">
-                      <div className="flex items-center justify-start w-full mb-7">
-                        <label
-                          for="toggleB"
-                          className="flex items-center cursor-pointer"
-                        >
-                          <div className="relative">
-                            <input
-                              type="checkbox"
-                              id="toggleB"
-                              className="sr-only"
-                            />
-                            <div className="block bg-gray-300 w-6 h-4 rounded-full"></div>
-                            <div className="dot absolute left-1 top-1 bg-white w-2 h-2 rounded-full transition"></div>
-                          </div>
-                          <div className="ml-2 text-gray-700 toggle-text">
-                            Remember me
-                          </div>
-                        </label>
-                      </div>
-                      <div className="flex align-middle justify-end">
-                        <Link to="/forgot-password" className="forgot-password">
-                          Forgot Password
-                        </Link>
-                      </div>
                     </div>
 
                     <div className="form-group">
