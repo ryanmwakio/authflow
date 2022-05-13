@@ -83,23 +83,13 @@ function Login() {
     e.preventDefault()
 
     try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true,
-        },
-      )
-      const accessToken = response.data.accessToken
-      const roles = response.data.roles
-      setAuth({ user, pwd, roles, accessToken })
+      setAuth({ user, pwd })
+
       //create a users array in local storage with an empty array if it doesn't exist
       if (!localStorage.getItem('users')) {
         localStorage.setItem('users', JSON.stringify([]))
       }
-      //get the users array from local storage and add the user to it without duplicates and without overwriting the array and the current user should be the first one in the array
-      //create an active users array in local storage with an empty array if it doesn't exist and add the user to it
+
       if (!localStorage.getItem('activeUsers')) {
         localStorage.setItem('activeUsers', JSON.stringify([]))
       }

@@ -126,12 +126,24 @@ function Signup() {
       )
 
       setSuccess(true)
-      console.log(response.data)
 
       //clear state and controlled inputs
       setUser('')
       setPwd('')
       setMatchPwd('')
+      //create registerd user array in local storage if it doesn't exist
+      //store user and pwd as object in registered users array in local storage
+      if (!localStorage.getItem('registeredUsers')) {
+        const registeredUsers = []
+        registeredUsers.push({ user, pwd })
+        localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers))
+      } else {
+        const registeredUsers = JSON.parse(
+          localStorage.getItem('registeredUsers'),
+        )
+        registeredUsers.push({ user, pwd })
+        localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers))
+      }
     } catch (err) {
       if (!err?.response) {
         setErrMsg('No Server Response')
